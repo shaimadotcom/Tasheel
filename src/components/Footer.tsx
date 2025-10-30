@@ -1,11 +1,25 @@
+import { useState, useEffect } from "react";
 import zatcaLogo from "@/assets/zatca-logo.png";
 import fasahLogo from "@/assets/fasah-logo.png";
 
 export const Footer = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.innerHeight + window.scrollY;
+      const documentHeight = document.documentElement.scrollHeight;
+      setIsScrolled(scrollPosition > documentHeight - 200); // Trigger when near bottom
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <footer className="bg-secondary py-8 sm:py-12">
+    <footer className={`transition-all duration-300 ${isScrolled ? 'bg-white/30 backdrop-blur-md shadow-lg' : 'bg-white/10 backdrop-blur-md shadow-sm'} py-8 sm:py-12`}>
       <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 border-t border-[#1c3150]/20">
           {/* Contact Section */}
           <div className="text-center md:text-right">
             <h3 className="text-lg font-bold mb-4 text-[#1c3150]">تواصل معنا</h3>
@@ -66,7 +80,7 @@ export const Footer = () => {
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-[#1c3150]/20 pt-6 text-center">
+        <div className="pt-6 text-center">
           <p className="text-[#1c3150]/70 text-sm">
             © {new Date().getFullYear()} تسهيل - جميع الحقوق محفوظة | منصة تحليل ما قبل الفسح الجمركي
           </p>

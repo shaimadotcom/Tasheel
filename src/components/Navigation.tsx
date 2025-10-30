@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Home, Globe, Sun, Moon, UserPlus, Info, Accessibility } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,12 +7,22 @@ import mainLogo from "@/assets/main-logo.png";
 
 export const Navigation = () => {
   const [mockDialog, setMockDialog] = useState<string | null>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const MockFeatureDialog = ({ title, description }: { title: string; description: string }) => (
     <Dialog open={mockDialog === title} onOpenChange={() => setMockDialog(null)}>
-      <DialogContent>
+      <DialogContent className="[&>button]:ring-0 [&>button]:focus:ring-0">
         <DialogHeader>
-          <DialogTitle className="text-[#1c3150]">{title}</DialogTitle>
+          <DialogTitle className="text-[#1c3150] text-center">{title}</DialogTitle>
           <DialogDescription className="text-base">{description}</DialogDescription>
         </DialogHeader>
       </DialogContent>
@@ -21,7 +31,7 @@ export const Navigation = () => {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-secondary shadow-md" style={{ height: 'var(--nav-height)' }}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/30 backdrop-blur-md shadow-lg' : 'bg-white/10 backdrop-blur-md shadow-sm'}`} style={{ height: 'var(--nav-height)' }}>
         <div className="max-w-screen-2xl mx-auto h-full px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-full gap-2">
             {/* Mock Features - Left Side (RTL) */}
@@ -64,7 +74,7 @@ export const Navigation = () => {
                 onClick={() => setMockDialog("لماذا تسهيل")}
                 className="text-[#1c3150]/90 hover:text-[#1c3150] hover:bg-[#1c3150]/10 text-sm sm:text-base hidden md:flex"
               >
-                لماذا تسهيل
+                لماذا تسهيل؟
               </Button>
 
               <Button

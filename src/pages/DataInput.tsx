@@ -14,9 +14,10 @@ export const DataInput = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     shipmentType: "commercial",
+    productType: "",
     productDescription: "",
     sourceCountry: "",
-    selectedPort: "",
+    destination: "",
     shipmentValue: "",
     invoiceNumber: "",
   });
@@ -44,48 +45,47 @@ export const DataInput = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Shipment Type */}
               <div>
-                <Label className="text-lg font-semibold mb-3 block">نوع الشحنة *</Label>
-                <RadioGroup
-                  value={formData.shipmentType}
-                  onValueChange={(value) => setFormData({ ...formData, shipmentType: value })}
-                  className="grid grid-cols-2 gap-4"
+                <Label className="text-lg font-semibold mb-3 block">نوع الشحنة: تجارية</Label>
+              </div>
+
+              {/* Product Type */}
+              <div>
+                <Label htmlFor="productType" className="text-lg font-semibold mb-3 block">
+                  طبيعة البضاعة *
+                </Label>
+                <Select
+                  value={formData.productType}
+                  onValueChange={(value) => setFormData({ ...formData, productType: value })}
+                  required
                 >
-                  <Label
-                    htmlFor="commercial"
-                    className={`cursor-pointer flex items-center justify-center p-6 border-2 rounded-lg transition-all ${
-                        formData.shipmentType === 'commercial'
-                          ? 'border-primary bg-primary/10 font-semibold'
-                          : 'border-border bg-muted hover:border-primary/50'
-                      }`}
-                  >
-                    <RadioGroupItem value="commercial" id="commercial" className="sr-only" />
-                    <span className="text-lg">تجارية</span>
-                  </Label>
-                  <Label
-                    htmlFor="personal"
-                    className={`cursor-pointer flex items-center justify-center p-6 border-2 rounded-lg transition-all ${
-                        formData.shipmentType === 'personal'
-                          ? 'border-primary bg-primary/10 font-semibold'
-                          : 'border-border bg-muted hover:border-primary/50'
-                      }`}
-                  >
-                    <RadioGroupItem value="personal" id="personal" className="sr-only" />
-                    <span className="text-lg">شخصية</span>
-                  </Label>
-                </RadioGroup>
+                  <SelectTrigger id="productType" className="text-base bg-input">
+                    <SelectValue placeholder="اختر طبيعة البضاعة" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="electronics">إلكترونيات</SelectItem>
+                    <SelectItem value="clothing">ملابس</SelectItem>
+                    <SelectItem value="food">مواد غذائية</SelectItem>
+                    <SelectItem value="machinery">معدات</SelectItem>
+                    <SelectItem value="chemicals">مواد كيميائية</SelectItem>
+                    <SelectItem value="furniture">أثاث</SelectItem>
+                    <SelectItem value="automotive">قطع غيار سيارات</SelectItem>
+                    <SelectItem value="pharmaceuticals">أدوية</SelectItem>
+                    <SelectItem value="cosmetics">مستحضرات تجميل</SelectItem>
+                    <SelectItem value="other">أخرى</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
 
               {/* Product Description */}
               <div>
                 <Label htmlFor="productDescription" className="text-lg font-semibold mb-3 block">
-                  طبيعة البضاعة (وصف تفصيلي) *
+                  وصف تفصيلي
                 </Label>
                 <Textarea
                   id="productDescription"
                   value={formData.productDescription}
                   onChange={(e) => setFormData({ ...formData, productDescription: e.target.value })}
                   placeholder="مثال: أجهزة إلكترونية - هواتف ذكية"
-                  required
                   className="min-h-32 text-base bg-input"
                 />
                 <p className="text-sm text-muted-foreground mt-2">
@@ -98,32 +98,53 @@ export const DataInput = () => {
                 <Label htmlFor="sourceCountry" className="text-lg font-semibold mb-3 block">
                   بلد المصدر *
                 </Label>
-                <Input
-                  id="sourceCountry"
-                  value={formData.sourceCountry}
-                  onChange={(e) => setFormData({ ...formData, sourceCountry: e.target.value })}
-                  placeholder="مثال: الصين"
-                  required
-                  className="text-base bg-input"
-                />
-              </div>
-
-              {/* Selected Port */}
-              <div>
-                <Label htmlFor="selectedPort" className="text-lg font-semibold mb-3 block">
-                  المنفذ المقترح مبدئياً *
-                </Label>
                 <Select
-                  value={formData.selectedPort}
-                  onValueChange={(value) => setFormData({ ...formData, selectedPort: value })}
+                  value={formData.sourceCountry}
+                  onValueChange={(value) => setFormData({ ...formData, sourceCountry: value })}
                   required
                 >
-                  <SelectTrigger id="selectedPort" className="text-base bg-input">
-                    <SelectValue placeholder="اختر المنفذ البري" />
+                  <SelectTrigger id="sourceCountry" className="text-base bg-input">
+                    <SelectValue placeholder="اختر بلد المصدر" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="al-hadithah">الحديثة</SelectItem>
-                    <SelectItem value="jadidah-arar">جديدة عرعر</SelectItem>
+                    <SelectItem value="china">الصين</SelectItem>
+                    <SelectItem value="usa">الولايات المتحدة</SelectItem>
+                    <SelectItem value="germany">ألمانيا</SelectItem>
+                    <SelectItem value="japan">اليابان</SelectItem>
+                    <SelectItem value="uk">المملكة المتحدة</SelectItem>
+                    <SelectItem value="france">فرنسا</SelectItem>
+                    <SelectItem value="italy">إيطاليا</SelectItem>
+                    <SelectItem value="south-korea">كوريا الجنوبية</SelectItem>
+                    <SelectItem value="india">الهند</SelectItem>
+                    <SelectItem value="turkey">تركيا</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Destination */}
+              <div>
+                <Label htmlFor="destination" className="text-lg font-semibold mb-3 block">
+                  وجهة التسليم *
+                </Label>
+                <Select
+                  value={formData.destination}
+                  onValueChange={(value) => setFormData({ ...formData, destination: value })}
+                  required
+                >
+                  <SelectTrigger id="destination" className="text-base bg-input">
+                    <SelectValue placeholder="اختر وجهة التسليم" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="riyadh">الرياض</SelectItem>
+                    <SelectItem value="jeddah">جدة</SelectItem>
+                    <SelectItem value="dammam">الدمام</SelectItem>
+                    <SelectItem value="khobar">الخبر</SelectItem>
+                    <SelectItem value="mecca">مكة المكرمة</SelectItem>
+                    <SelectItem value="medina">المدينة المنورة</SelectItem>
+                    <SelectItem value="taif">الطائف</SelectItem>
+                    <SelectItem value="abha">أبها</SelectItem>
+                    <SelectItem value="jizan">جازان</SelectItem>
+                    <SelectItem value="hail">حائل</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
