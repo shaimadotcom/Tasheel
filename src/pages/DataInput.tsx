@@ -14,12 +14,17 @@ export const DataInput = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     shipmentType: "commercial",
+    businessType: "",
     productType: "",
     productDescription: "",
     sourceCountry: "",
     destination: "",
     shipmentValue: "",
     invoiceNumber: "",
+    billOfLadingNumber: "",
+    grossWeight: "",
+    numberOfPackages: "",
+    shippingMethod: "",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -30,22 +35,40 @@ export const DataInput = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col" dir="rtl">
       <Navigation />
       <main className="flex-1 pt-[var(--nav-height)] pb-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
           <div className="bg-popover rounded-2xl shadow-xl p-6 sm:p-8 lg:p-12">
             <h1 className="text-3xl sm:text-4xl font-bold mb-2 text-[#1c3150] text-center">
-              بيانات الشحنة
+              مدخلات الشحنة
             </h1>
             <p className="text-center text-muted-foreground mb-8">
               أدخل البيانات الأساسية لشحنتك للبدء في التحليل
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Shipment Type */}
+              {/* Business Type */}
               <div>
-                <Label className="text-lg font-semibold mb-3 block">نوع الشحنة: تجارية</Label>
+                <Label htmlFor="businessType" className="text-lg font-semibold mb-3 block">
+                  نوع النشاط *
+                </Label>
+                <Select
+                  value={formData.businessType}
+                  onValueChange={(value) => setFormData({ ...formData, businessType: value })}
+                  required
+                >
+                  <SelectTrigger id="businessType" className="text-base bg-input">
+                    <SelectValue placeholder="اختر نوع النشاط" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="industrial">منشأة صناعية</SelectItem>
+                    <SelectItem value="commercial">منشأة تجارية (بيع بالجملة / التجزئة)</SelectItem>
+                    <SelectItem value="logistics">شركة لوجستية أو نقل</SelectItem>
+                    <SelectItem value="contracting">شركة مقاولات / مشاريع</SelectItem>
+                    <SelectItem value="government">جهة حكومية / شبه حكومية</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
 
               {/* Product Type */}
@@ -170,7 +193,7 @@ export const DataInput = () => {
               {/* Invoice Number */}
               <div>
                 <Label htmlFor="invoiceNumber" className="text-lg font-semibold mb-3 block">
-                  رقم الفاتورة *
+                  رقم الفاتورة التجارية *
                 </Label>
                 <Input
                   id="invoiceNumber"
@@ -180,6 +203,80 @@ export const DataInput = () => {
                   required
                   className="text-base bg-input"
                 />
+              </div>
+
+              {/* Bill of Lading Number */}
+              <div>
+                <Label htmlFor="billOfLadingNumber" className="text-lg font-semibold mb-3 block">
+                  رقم بوليصة الشحن *
+                </Label>
+                <Input
+                  id="billOfLadingNumber"
+                  value={formData.billOfLadingNumber}
+                  onChange={(e) => setFormData({ ...formData, billOfLadingNumber: e.target.value })}
+                  placeholder="مثال: BOL-2024-001"
+                  required
+                  className="text-base bg-input"
+                />
+              </div>
+
+              {/* Gross Weight */}
+              <div>
+                <Label htmlFor="grossWeight" className="text-lg font-semibold mb-3 block">
+                  وزن الشحنة الإجمالي *
+                </Label>
+                <Input
+                  id="grossWeight"
+                  type="number"
+                  value={formData.grossWeight}
+                  onChange={(e) => setFormData({ ...formData, grossWeight: e.target.value })}
+                  placeholder="مثال: 5000"
+                  required
+                  min="0"
+                  step="0.01"
+                  className="text-base bg-input"
+                />
+                <p className="text-sm text-muted-foreground mt-2">
+                  الوزن بالكيلوغرام
+                </p>
+              </div>
+
+              {/* Number of Packages */}
+              <div>
+                <Label htmlFor="numberOfPackages" className="text-lg font-semibold mb-3 block">
+                  عدد الطرود أو الحاويات *
+                </Label>
+                <Input
+                  id="numberOfPackages"
+                  type="number"
+                  value={formData.numberOfPackages}
+                  onChange={(e) => setFormData({ ...formData, numberOfPackages: e.target.value })}
+                  placeholder="مثال: 10"
+                  required
+                  min="1"
+                  className="text-base bg-input"
+                />
+              </div>
+
+              {/* Shipping Method */}
+              <div>
+                <Label htmlFor="shippingMethod" className="text-lg font-semibold mb-3 block">
+                  جهة الشحن ووسيلة النقل *
+                </Label>
+                <Select
+                  value={formData.shippingMethod}
+                  onValueChange={(value) => setFormData({ ...formData, shippingMethod: value })}
+                  required
+                >
+                  <SelectTrigger id="shippingMethod" className="text-base bg-input">
+                    <SelectValue placeholder="اختر وسيلة النقل" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="land">بري</SelectItem>
+                    <SelectItem value="sea">بحري</SelectItem>
+                    <SelectItem value="air">جوي</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
 
               <Button

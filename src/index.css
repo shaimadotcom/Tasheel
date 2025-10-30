@@ -112,6 +112,7 @@
     scroll-behavior: smooth;
     direction: rtl;
     font-family: 'Noto Sans Arabic', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
   }
 
   body {

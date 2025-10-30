@@ -29,24 +29,45 @@ export const DocumentUpload = () => {
 
     const data = JSON.parse(storedData);
     const description = data.productDescription.toLowerCase();
+    const businessType = data.businessType;
+    const shippingMethod = data.shippingMethod;
 
-    // Simple mock classification
+    // Enhanced mock classification based on business type and shipping method
+    let baseRequirements = {
+      hsCode: "9999.99",
+      approvals: ["SASO - الهيئة السعودية للمواصفات"],
+    };
+
+    // Product-based requirements
     if (description.includes("إلكتروني") || description.includes("هاتف") || description.includes("جهاز")) {
-      setMockRequirements({
+      baseRequirements = {
         hsCode: "8517.12",
         approvals: ["CITC - هيئة الاتصالات", "SASO - الهيئة السعودية للمواصفات"],
-      });
+      };
     } else if (description.includes("غذائ") || description.includes("طعام")) {
-      setMockRequirements({
+      baseRequirements = {
         hsCode: "2106.90",
         approvals: ["SFDA - هيئة الغذاء والدواء", "SASO - الهيئة السعودية للمواصفات"],
-      });
-    } else {
-      setMockRequirements({
-        hsCode: "9999.99",
-        approvals: ["SASO - الهيئة السعودية للمواصفات"],
-      });
+      };
     }
+
+    // Business type specific requirements
+    if (businessType === "industrial") {
+      baseRequirements.approvals.push("MODON - وزارة الصناعة والثروة المعدنية");
+    } else if (businessType === "government") {
+      baseRequirements.approvals.push("وزارة المالية - إدارة المشتريات الحكومية");
+    } else if (businessType === "logistics") {
+      baseRequirements.approvals.push("وزارة النقل - هيئة النقل");
+    }
+
+    // Shipping method specific requirements
+    if (shippingMethod === "sea") {
+      baseRequirements.approvals.push("هيئة الموانئ البحرية");
+    } else if (shippingMethod === "air") {
+      baseRequirements.approvals.push("الهيئة العامة للطيران المدني");
+    }
+
+    setMockRequirements(baseRequirements);
   }, [navigate]);
 
   const handleFileChange = (fileType: keyof typeof files, file: File | null) => {

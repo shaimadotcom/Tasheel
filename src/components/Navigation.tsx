@@ -18,12 +18,12 @@ export const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const MockFeatureDialog = ({ title, description }: { title: string; description: string }) => (
+  const MockFeatureDialog = ({ title, description, rtl }: { title: string; description: string; rtl?: boolean }) => (
     <Dialog open={mockDialog === title} onOpenChange={() => setMockDialog(null)}>
-      <DialogContent className="[&>button]:ring-0 [&>button]:focus:ring-0">
+      <DialogContent className={`border-0 [&>button]:!ring-0 [&>button]:!ring-offset-0 [&>button]:!bg-transparent [&>button]:hover:!ring-0 [&>button]:hover:!ring-offset-0 [&>button]:hover:!bg-transparent [&>button]:focus:!ring-0 [&>button]:focus:!ring-offset-0 [&>button]:focus:!bg-transparent ${rtl ? 'text-right' : ''}`}>
         <DialogHeader>
           <DialogTitle className="text-[#1c3150] text-center">{title}</DialogTitle>
-          <DialogDescription className="text-base">{description}</DialogDescription>
+          <DialogDescription className={`text-base ${rtl ? 'text-right' : ''}`}>{description}</DialogDescription>
         </DialogHeader>
       </DialogContent>
     </Dialog>
@@ -34,38 +34,10 @@ export const Navigation = () => {
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/30 backdrop-blur-md shadow-lg' : 'bg-white/10 backdrop-blur-md shadow-sm'}`} style={{ height: 'var(--nav-height)' }}>
         <div className="max-w-screen-2xl mx-auto h-full px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-full gap-2">
-            {/* Mock Features - Left Side (RTL) */}
-            <div className="flex items-center gap-2 sm:gap-3">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setMockDialog("الوضع الليلي")}
-                className="text-[#1c3150]/70 hover:text-[#1c3150] hover:bg-[#1c3150]/10"
-                aria-label="تبديل الوضع"
-              >
-                <Sun className="h-5 w-5 text-[#1c3150]" />
-              </Button>
-              
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setMockDialog("إمكانية الوصول")}
-                className="text-[#1c3150]/70 hover:text-[#1c3150] hover:bg-[#1c3150]/10"
-                aria-label="خيارات إمكانية الوصول"
-              >
-                <Accessibility className="h-5 w-5 text-[#1c3150]" />
-              </Button>
-
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setMockDialog("تغيير اللغة")}
-                className="text-[#1c3150]/70 hover:text-[#1c3150] hover:bg-[#1c3150]/10 hidden sm:flex"
-                aria-label="تغيير اللغة"
-              >
-                <Globe className="h-5 w-5 text-[#1c3150]" />
-              </Button>
-            </div>
+            {/* Logo/Home - Left Side */}
+            <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
+              <img src={mainLogo} alt="تسهيل" className="h-8 sm:h-10 w-auto" />
+            </Link>
 
             {/* Center Items */}
             <div className="flex items-center gap-3 sm:gap-4">
@@ -87,10 +59,38 @@ export const Navigation = () => {
               </Button>
             </div>
 
-            {/* Logo/Home - Right Side (RTL) */}
-            <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
-              <img src={mainLogo} alt="تسهيل" className="h-8 sm:h-10 w-auto" />
-            </Link>
+            {/* Mock Features - Right Side */}
+            <div className="flex items-center gap-2 sm:gap-3">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setMockDialog("الوضع الليلي")}
+                className="text-[#1c3150]/70 hover:text-[#1c3150] hover:bg-[#1c3150]/10"
+                aria-label="تبديل الوضع"
+              >
+                <Sun className="h-5 w-5 text-[#1c3150]" />
+              </Button>
+               
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setMockDialog("إمكانية الوصول")}
+                className="text-[#1c3150]/70 hover:text-[#1c3150] hover:bg-[#1c3150]/10"
+                aria-label="خيارات إمكانية الوصول"
+              >
+                <Accessibility className="h-5 w-5 text-[#1c3150]" />
+              </Button>
+
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setMockDialog("تغيير اللغة")}
+                className="text-[#1c3150]/70 hover:text-[#1c3150] hover:bg-[#1c3150]/10 hidden sm:flex"
+                aria-label="تغيير اللغة"
+              >
+                <Globe className="h-5 w-5 text-[#1c3150]" />
+              </Button>
+            </div>
           </div>
         </div>
       </nav>
@@ -99,22 +99,27 @@ export const Navigation = () => {
       <MockFeatureDialog
         title="تسجيل الدخول"
         description="ستتوفر ميزة تسجيل الدخول قريباً لحفظ بياناتك وتتبع شحناتك السابقة. في الإصدار الكامل، ستتمكن من إنشاء حساب شخصي وإدارة جميع معاملاتك الجمركية."
+        rtl={true}
       />
       <MockFeatureDialog
         title="لماذا تسهيل"
         description="تسهيل هي منصة ذكية للتحقق المسبق من جاهزية الشحنات التجارية قبل الوصول للمنافذ البرية. نوفر لك تحليل المستندات، تقييم المخاطر، واقتراحات التوقيت الأمثل لتوفير الوقت وتجنب المخالفات."
+        rtl={true}
       />
       <MockFeatureDialog
         title="تغيير اللغة"
         description="ستتوفر اللغة الإنجليزية ولغات أخرى قريباً لخدمة جميع المستخدمين في المملكة. حالياً، المنصة متاحة باللغة العربية فقط."
+        rtl={true}
       />
       <MockFeatureDialog
         title="إمكانية الوصول"
         description="نعمل على توفير خيارات إمكانية الوصول الشاملة، بما في ذلك: تكبير النص، الوضع عالي التباين، والقراءة الصوتية للمحتوى. هذه الميزات ستكون متاحة في الإصدار الكامل."
+        rtl={true}
       />
       <MockFeatureDialog
         title="الوضع الليلي"
         description="الوضع الليلي قيد التطوير لتوفير تجربة مريحة للعينين في جميع الأوقات. حالياً، المنصة متاحة بالوضع النهاري فقط."
+        rtl={true}
       />
     </>
   );

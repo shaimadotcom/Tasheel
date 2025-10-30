@@ -18,23 +18,23 @@ export const Onboarding = () => {
         />
         <div className="max-w-3xl mx-auto text-center relative z-10 animate-fade-slide-in">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-[#1c3150]">
-            وداعاً للتأخير والمخالفات غير المقصودة
+            جاهز قبل ما توصل.
           </h1>
           <p className="text-xl sm:text-2xl text-foreground/80 mb-8 leading-relaxed">
-            احصل على تحليل شامل لجاهزية شحنتك قبل الوصول للمنفذ الجمركي
+            حلـل، تحقق، وادخل المنفذ بثقة.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <div className="flex items-center gap-3 text-lg">
               <CheckCircle className="text-primary w-6 h-6" />
-              <span>توفير الوقت</span>
+              <span>فسح أسرع</span>
             </div>
             <div className="flex items-center gap-3 text-lg">
               <CheckCircle className="text-primary w-6 h-6" />
-              <span>تجنب الغرامات</span>
+              <span>التزام أعلى</span>
             </div>
             <div className="flex items-center gap-3 text-lg">
               <CheckCircle className="text-primary w-6 h-6" />
-              <span>فسح سريع</span>
+              <span>تجربة أسهل</span>
             </div>
           </div>
           <p className="mt-12 text-muted-foreground animate-bounce">
@@ -53,25 +53,25 @@ export const Onboarding = () => {
         />
         <div className="max-w-4xl mx-auto text-center relative z-10 animate-fade-slide-in">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-12 text-[#1c3150]">
-            تحقق مزدوج: المستندات والتوقيت الأمثل للعبور
+            تحليل ذكي وجاهزية فورية
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
             {/* Document Analysis */}
             <div className="bg-card/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg border-2 border-primary/20 hover:border-primary/40 transition-all animate-border-glow">
               <FileText className="w-16 h-16 text-primary mx-auto mb-4" />
-              <h3 className="text-2xl font-bold mb-4 text-[#1c3150]">تحليل المستندات الذكي</h3>
+              <h3 className="text-2xl font-bold mb-4 text-[#1c3150]">تحليل ذكي و مزدوج</h3>
               <ul className="space-y-3 text-right text-foreground/80">
                 <li className="flex items-start gap-3">
                   <CheckCircle className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                  <span>فحص تلقائي للفاتورة وبوليصة الشحن وشهادة المنشأ</span>
+                  <span>تحليل فوري لجميع المستندات: الفاتورة، بوليصة الشحن، شهادة المنشأ.</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                  <span>تصنيف ذكي للبضائع وتحديد التراخيص المطلوبة</span>
+                  <span>تصنيف ذكي للبضائع وتحديد التراخيص المطلوبة تلقائيًا.</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                  <span>تقييم درجة الجاهزية من 50% إلى 100%</span>
+                  <span>تقييم جاهزية الشحنة بنسبة دقيقة من 50٪ إلى 100٪.</span>
                 </li>
               </ul>
             </div>
@@ -83,15 +83,15 @@ export const Onboarding = () => {
               <ul className="space-y-3 text-right text-foreground/80">
                 <li className="flex items-start gap-3">
                   <CheckCircle className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                  <span>تحليل الازدحام في المنافذ البرية بشكل فوري</span>
+                  <span>تحليل مباشر لحالة الازدحام في المنافذ البرية.</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                  <span>اقتراح المنفذ والتوقيت الأمثل للعبور</span>
+                  <span>اقتراح المنفذ والوقت الأمثل للعبور بناءً على البيانات الفعلية.</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                  <span>توفير حتى ساعات من وقت الانتظار</span>
+                  <span>تقليل وقت الانتظار بعد الفحص بما يصل إلى ساعات من التأخير اليومي</span>
                 </li>
               </ul>
             </div>
@@ -148,7 +148,7 @@ export const Onboarding = () => {
             onClick={() => navigate("/journey")}
             className="text-xl px-8 py-6 h-auto bg-primary hover:bg-primary/90 text-primary-foreground shadow-xl hover:shadow-2xl transition-all hover:scale-105"
           >
-            ابدأ الآن - جرّب المنصة
+            ابدأ الان 
           </Button>
         </div>
       </section>

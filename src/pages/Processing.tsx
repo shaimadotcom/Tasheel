@@ -36,7 +36,7 @@ export const Processing = () => {
             <div className="flex items-center gap-4 justify-end">
               <div className="text-right flex-1">
                 <p className="font-semibold text-lg">جارٍ تحليل المستندات</p>
-                <p className="text-sm text-muted-foreground">فحص الفاتورة والبوليصة وشهادة المنشأ</p>
+                <p className="text-sm text-muted-foreground">فحص الفاتورة والبوليصة وشهادة المنشأ وبيانات الشحنة الأساسية</p>
               </div>
               <CheckCircle className="w-8 h-8 text-primary flex-shrink-0" />
             </div>
@@ -46,7 +46,7 @@ export const Processing = () => {
             <div className="flex items-center gap-4 justify-end">
               <div className="text-right flex-1">
                 <p className="font-semibold text-lg">جارٍ تقييم المخاطر</p>
-                <p className="text-sm text-muted-foreground">تحليل القيمة والتصنيف وتحديد المسار الجمركي</p>
+                <p className="text-sm text-muted-foreground">تحليل القيمة والوزن ونوع النشاط ووسيلة النقل وتحديد المسار الجمركي</p>
               </div>
               <Loader2 className="w-8 h-8 text-primary flex-shrink-0 animate-spin" />
             </div>
@@ -55,8 +55,8 @@ export const Processing = () => {
           <div className="bg-card/80 backdrop-blur-sm rounded-xl p-6 border-2 border-primary/20 animate-fade-slide-in" style={{ animationDelay: "1s" }}>
             <div className="flex items-center gap-4 justify-end">
               <div className="text-right flex-1">
-                <p className="font-semibold text-lg">جارٍ تحليل الازدحام</p>
-                <p className="text-sm text-muted-foreground">مقارنة المنافذ واقتراح التوقيت الأمثل</p>
+                <p className="font-semibold text-lg">جارٍ تحليل الازدحام والمتطلبات</p>
+                <p className="text-sm text-muted-foreground">مقارنة المنافذ واقتراح التوقيت الأمثل وتحديد التراخيص المطلوبة</p>
               </div>
               <Loader2 className="w-8 h-8 text-primary flex-shrink-0 animate-spin" />
             </div>
