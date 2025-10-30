@@ -1,0 +1,246 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* TASHEEL Design System - All colors MUST be HSL */
+
+@layer base {
+  :root {
+    /* TASHEEL Brand Colors */
+    --background: 0 0% 100%; /* White */
+    --foreground: 0 0% 0%; /* Black body text */
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+
+    --primary: 117 38% 54%; /* #62b55b Main Green */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 37 65% 92%; /* #f5ead7 Beige */
+    --secondary-foreground: 215 49% 21%; /* #1c3150 Deep Blue for text on beige */
+
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 117 38% 54%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Semantic Status Colors */
+    --status-green: 117 38% 54%; /* #62b55b */
+    --status-yellow: 45 100% 51%; /* #ffc107 */
+    --status-red: 354 70% 54%; /* #dc3545 */
+
+    --border: 0 0% 90%;
+    --input: 0 0% 95%;
+    --ring: 117 38% 54%;
+
+    --radius: 0.75rem;
+
+    /* Animation Variables */
+    --transition-speed-base: 0.3s;
+    --animation-speed-slow: 0.6s;
+    --animation-pulse-speed: 2s;
+
+    /* Layout Variables */
+    --nav-height: 4rem;
+    --max-content-width: 75rem;
+
+    /* Sidebar */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 0% 0%;
+    --sidebar-primary: 117 38% 54%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 95%;
+    --sidebar-accent-foreground: 0 0% 0%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 117 38% 54%;
+  }
+
+  .dark {
+    --background: 215 49% 21%;
+    --foreground: 0 0% 100%;
+
+    --card: 215 45% 18%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 215 45% 15%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 117 38% 54%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 215 40% 30%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 215 40% 25%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 117 38% 54%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 354 70% 54%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 215 40% 25%;
+    --input: 215 40% 25%;
+    --ring: 117 38% 54%;
+
+    --sidebar-background: 215 49% 18%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 117 38% 54%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 215 40% 25%;
+    --sidebar-accent-foreground: 0 0% 90%;
+    --sidebar-border: 215 40% 25%;
+    --sidebar-ring: 117 38% 54%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    direction: rtl;
+    font-family: 'Noto Sans Arabic', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-size: 1rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/src/assets/secondary-background-blue.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 30%;
+    opacity: 0.02;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: hsl(var(--secondary));
+    font-weight: 700;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+    line-height: 1.3;
+    margin-bottom: 0.875rem;
+  }
+
+  h3 {
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    line-height: 1.4;
+    margin-bottom: 0.75rem;
+  }
+
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation;
+  }
+}
+
+@layer utilities {
+  .scroll-snap-container {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .scroll-snap-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scroll-snap-item {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .animate-slide-up-exit {
+    animation: slideUpExit var(--animation-speed-slow) ease-out forwards;
+  }
+
+  @keyframes slideUpExit {
+    from {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(-100vh);
+      opacity: 0;
+    }
+  }
+
+  @keyframes fadeSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(2rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-slide-in {
+    animation: fadeSlideIn 0.6s ease-out forwards;
+  }
+
+  @keyframes borderGlow {
+    0%, 100% {
+      box-shadow: 0 0 1rem hsl(var(--primary) / 0.3);
+    }
+    50% {
+      box-shadow: 0 0 2rem hsl(var(--primary) / 0.6);
+    }
+  }
+
+  .animate-border-glow {
+    animation: borderGlow var(--animation-pulse-speed) ease-in-out infinite;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-spin-slow {
+    animation: spin 3s linear infinite;
+  }
+}
