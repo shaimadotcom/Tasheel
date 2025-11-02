@@ -1,6 +1,5 @@
 ---
 title: Tasheel
-emoji: ⚡
 colorFrom: pink
 colorTo: blue
 sdk: static
@@ -9,31 +8,33 @@ app_file: dist/index.html
 pinned: false
 ---
 
-⚡ Tasheel: Smart Commercial Shipment Pre-Verification
-Welcome to Tasheel! This platform is designed to make commercial shipments a breeze by providing smart, pre-verification services before they even hit the land ports.
+Tasheel: Smart Commercial Shipment Pre-Verification
 
-We analyze your shipment documents, assess potential risks, and give you the best recommendations for achieving fast, optimal customs clearance. Say goodbye to unexpected delays!
+Tasheel is a platform developed for the Saudi government Zakat, Tax and Customs Authority (ZATCA) to streamline commercial shipment processes. It provides intelligent pre-verification services for shipments before they reach land ports, analyzing documents, assessing risks, and offering recommendations for efficient customs clearance, minimizing delays and ensuring compliance.
 
-🛠️ Tech Stack Spotlight
-Tasheel is built with a modern and robust set of technologies, ensuring a snappy and reliable user experience.
+Tech Stack
 
-Category	Key Technologies
-Frontend	React 18, TypeScript
-UI/UX	ShadCN UI (with Radix UI), Tailwind CSS
-State/Data	TanStack React Query
-Forms/Validation	React Hook Form, Zod
-Tooling	Vite (Build Tool), React Router DOM (Routing)
-🚀 Getting Started (Local Development)
-Want to run Tasheel locally? It's simple!
+Tasheel is built using modern, reliable technologies to deliver a seamless user experience.
 
-Clone the Repository
-Install Dependencies
-npm install
-Start Development Server (Runs on http://localhost:5173/ by default)
-npm run dev
+Category | Key Technologies
+--- | ---
+Frontend | React 18, TypeScript
+UI/UX | ShadCN UI (with Radix UI), Tailwind CSS
+State/Data | TanStack React Query
+Forms/Validation | React Hook Form, Zod
+Tooling | Vite (Build Tool), React Router DOM (Routing)
+
+Getting Started (Local Development)
+
+To run Tasheel locally:
+
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Start the development server (runs on http://localhost:5173/ by default): `npm run dev`
+
 Production Commands
-Build for Production:
-npm run build
-Preview Production Build:
-npm run preview
-Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
+
+- Build for production: `npm run build`
+- Preview production build: `npm run preview`
+
+For more information on configuration, refer to the Hugging Face Spaces configuration reference at https://huggingface.co/docs/hub/spaces-config-reference

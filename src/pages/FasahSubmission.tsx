@@ -66,7 +66,7 @@ export const FasahSubmission = () => {
           <div className={`bg-card/80 backdrop-blur-sm rounded-xl p-6 border-2 transition-all ${progress >= 100 ? "border-primary" : "border-primary/20"}`}>
             <div className="flex items-center gap-4 justify-end">
               <div className="text-right flex-1">
-                <p className="font-semibold text-lg">جاري إرسال البيان الجمركي آلياً إلى فسح</p>
+                <p className="font-semibold text-lg">جاري إرسال بياناتك لفسح</p>
               </div>
               {progress >= 100 ? (
                 <CheckCircle className="w-8 h-8 text-primary flex-shrink-0" />
